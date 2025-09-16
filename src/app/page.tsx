@@ -106,7 +106,7 @@ export default function Home() {
       setTheme('');
       setHaikuParts({ part1: '', part2: '', part3: '' });
 
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
       alert(error.message);
     } finally {
