@@ -105,7 +105,7 @@ export default function Home() {
       // フォームをクリア
       setTheme('');
       setHaikuParts({ part1: '', part2: '', part3: '' });
-
+//エラーの型を修正しました。
     } catch (error: any) {
       console.error(error);
       alert(error.message);
