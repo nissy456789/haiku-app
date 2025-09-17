@@ -86,26 +86,17 @@ export default function Home() {
       const data = await res.json();
       const haiku = data.haiku;
 
-      // 生成された俳句をDBに保存する
-      const saveRes = await fetch('/api/haikus', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name: 'AI', haiku }),
+      // 生成された俳句を空白文字（半角、全角など）で分割
+      const parts = haiku.split(/\s+/);
+      setHaikuParts({
+        part1: parts[0] || '',
+        part2: parts[1] || '',
+        part3: parts[2] || '',
       });
 
-      if (!saveRes.ok) {
-        throw new Error('生成された俳句の保存に失敗しました。');
-      }
-
-      const newHaiku = await saveRes.json();
-      setHaikus([newHaiku, ...haikus]);
-      
-      // フォームをクリア
+      // お題入力欄のみクリア
       setTheme('');
-      setHaikuParts({ part1: '', part2: '', part3: '' });
-//エラーの型を修正しました。
+
     } catch (error: any) {
       console.error(error);
       alert(error.message);
@@ -140,9 +131,16 @@ export default function Home() {
                 type="button"
                 onClick={handleGenerateHaiku}
                 disabled={isLoading}
-                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
+                className="inline-flex items-center justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 w-48"
               >
-                {isLoading ? '生成中...' : 'AIに詠んでもらう'}
+                {isLoading ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                    <span>生成中...</span>
+                  </>
+                ) : (
+                  'AIに詠んでもらう'
+                )}
               </button>
             </div>
           </div>
