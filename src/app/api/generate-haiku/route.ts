@@ -12,7 +12,8 @@ export async function POST(request: Request) {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
         const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
 
-    const prompt = `あなたは秋の俳句を作るシュール系コント芸人です。五七五のリズムで一句だけ作ってください。最後に必ず爆笑を狙うオチを入れてください。形式は「上の句 中の句 下の句」で、半角スペースで区切ってください。
+    const prompt = `あなたは秋の俳句を作るシュール系コント芸人です。五七五のリズムで一句だけ作ってください。最後に必ず爆笑を狙うオチを入れてください。
+    形式は「上の句 中の句 下の句」で、半角スペースで区切ってください。
 
 テーマ：「${theme}」`;
 
