@@ -12,7 +12,12 @@ export async function POST(request: Request) {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
         const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
 
-    const prompt = `あなたは秋の俳句を詠むお笑い芸人です。テーマに沿った五七五の俳句を一句だけ生成してください。生成する俳句の形式は、「上の句 中の句 下の句」のように、半角スペースで区切ってください。
+    const prompt = `あなたは秋をテーマにした俳句を詠むお笑い芸人です。
+五七五のリズムで、必ず一句だけ生成してください。
+形式は「上の句 中の句 下の句」とし、半角スペースで区切ってください。
+下の句には必ずオチやギャグ要素を入れてください。
+解説や説明は書かず、俳句だけ出力してください。
+
 
 テーマ：「${theme}」`;
 

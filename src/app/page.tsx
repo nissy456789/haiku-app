@@ -106,7 +106,12 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto p-4 bg-yellow-50 min-h-screen font-serif">
+    <div className="relative container mx-auto p-4 bg-yellow-50 min-h-screen font-serif overflow-hidden">
+      <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 text-9xl opacity-50">🍁</div>
+      <div className="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 text-9xl opacity-50">🍂</div>
+      <div className="absolute bottom-0 left-0 -translate-x-1/4 translate-y-1/4 text-9xl opacity-50">🍂</div>
+      <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 text-9xl opacity-50">🍁</div>
+      <div className="relative z-10">
       <header className="text-center my-8">
         <h1 className="text-4xl font-bold text-gray-800">俳句の秋</h1>
         <p className="text-gray-600">あなたの俳句を詠んでみよう</p>
@@ -229,6 +234,7 @@ export default function Home() {
       <footer className="text-center mt-12 py-4">
           <p className="text-xs text-gray-500">© 2025 俳句の秋</p>
       </footer>
+      </div>
     </div>
   );
 }
