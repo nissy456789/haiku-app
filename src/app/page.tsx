@@ -86,8 +86,8 @@ export default function Home() {
       const data = await res.json();
       const haiku = data.haiku;
 
-      // 生成された俳句を空白文字（半角、全角など）で分割
-      const parts = haiku.split(/\s+/);
+      // 生成された俳句を空白文字（半角、全角など）や読点で分割
+      const parts = haiku.split(/[\s、]+/);
       setHaikuParts({
         part1: parts[0] || '',
         part2: parts[1] || '',
